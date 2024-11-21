@@ -48,23 +48,13 @@ export default function Home() {
         <div className="container mx-auto px-4 py-20 relative">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="text-white z-10">
-              <h1 className="text-5xl font-bold mb-4 leading-tight">
+              <h1 className="text-5xl text-black font-bold mb-4 leading-tight">
                 Discover Your Perfect Camping Adventure
               </h1>
-              <p className="text-xl mb-8 text-green-100">
+              <p className="text-xl text-black mb-8 text-green-100">
                 Find and book the best camping spots across the country. From rustic campsites 
                 to luxury glamping experiences.
               </p>
-              <div className="flex gap-4">
-                <button className="bg-white text-green-800 px-8 py-3 rounded-lg font-semibold 
-                  hover:bg-green-100 transition-colors">
-                  Explore Now
-                </button>
-                <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold 
-                  hover:bg-white/10 transition-colors">
-                  Learn More
-                </button>
-              </div>
             </div>
             <div className="relative hidden md:block">
               {/* Hero Images */}
@@ -89,7 +79,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Features Section */}
+      {/* Features Section */}  
       <div className="bg-gray-50 py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
