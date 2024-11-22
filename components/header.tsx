@@ -56,9 +56,9 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             {session?.data?.user ? (
               <div className="flex items-center space-x-3">
-                <button className="w-10 h-10 text-xl font-semibold text-white bg-yellow-500 rounded-full flex items-center justify-center cursor-pointer">
+                <Link href="/dashboard" className="w-10 h-10 text-xl font-semibold text-white bg-yellow-500 rounded-full flex items-center justify-center cursor-pointer">
                   {session.data.user.name?.slice(0, 1).toUpperCase()}
-                </button>
+                </Link>
                 <button
                   className="bg-red-500 text-black px-3 py-2 rounded-md hover:bg-red-600 transition duration-300 ease-in-out"
                   onClick={() => signOut()}

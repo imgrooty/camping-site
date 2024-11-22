@@ -13,6 +13,13 @@ const signinZod = zod.object({
 });
 
 export const authOptions = {
+  pages: {
+    signIn: "/signin",
+    error: "/signin",
+    verifyRequest: "/signin",
+    newUser: "/signin",
+    signOut: "/",
+  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -69,9 +76,6 @@ export const authOptions = {
     }),
   ],
 
-  pages: {
-    signOut: "/", // Redirect to the landing page after signout
-  },
   callbacks: {
     async jwt({ token, user }: { token: JWT; user: any }) {
       if (user) {

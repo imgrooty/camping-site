@@ -43,8 +43,17 @@ export default function Home() {
   }, []);
 
   const filteredProviders = providers.filter((provider) => {
+    const searchQuery = query.toLowerCase();
     return (
-      provider.name.toLowerCase().includes(query.toLowerCase()) &&
+      (provider.name.toLowerCase().includes(searchQuery) ||
+      provider.location?.toLowerCase().includes(searchQuery) ||
+      provider.description?.toLowerCase().includes(searchQuery) ||
+      provider.amenities?.some(amenity => 
+        amenity.toLowerCase().includes(searchQuery)
+      ) ||
+      provider.activities?.some((activity: string) => 
+        activity.toLowerCase().includes(searchQuery)
+      )) &&
       (filters.priceRange ? provider.priceRange === filters.priceRange : true) &&
       (filters.type ? provider.type === filters.type : true)
     );
@@ -53,7 +62,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-green-500">
       
-      <section className="w-full h-[75vh] px-4 bg-gradient-to-b from-gray-50 to-white" style={{textAlign: 'center', backgroundImage: 'url(/images/back.jpg)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      <section className="w-full py-20 h-[90vh] bg-gradient-to-b from-gray-50 to-white" style={{textAlign: 'center', backgroundImage: 'url(/images/back.jpg)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
       <SearchBar query={query} setQuery={setQuery} />
             <div className="flex flex-col items-center">
               <Filter

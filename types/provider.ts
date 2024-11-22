@@ -8,4 +8,5 @@ export interface CampingProvider {
   location: string;
   rating: number;
   amenities: string[];
+  activities?: string[];
 } 

@@ -76,9 +76,9 @@ export default function Filter({ filter, setFilter, className }: FilterProps) {
 
   // Update price range options to match the data format
   const priceRanges = [
-    { label: '$30-50', value: '30-50' },
-    { label: '$51-100', value: '51-100' },
-    { label: '$101+', value: '101-plus' }
+    { label: '$30-50', value: '$30-50' },
+    { label: '$51-100', value: '$51-100' },
+    { label: '$101+', value: '$101-plus' }
   ];
 
   // Update accommodation types to match the data

@@ -20,7 +20,7 @@ export default function SearchBar({
       </div>
       <input
         type="text"
-        placeholder="Search camping providers"
+        placeholder="Search camps by name, location, amenities..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="pl-12 pr-4 py-3 bg-green-200 text-black border border-[#54C392] rounded-xl w-full mb-4 

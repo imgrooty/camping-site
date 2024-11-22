@@ -8,7 +8,7 @@ interface CampingCardProps {
 
 export default function CampingCard({ provider }: CampingCardProps) {
   return (
-    <div className="bg-green-50 rounded-xl p-2 hover:scale-[1.02] transition-all duration-300"
+    <div className="bg-green-100 rounded-xl p-2 hover:scale-[1.02] transition-all duration-300"
          style={{ 
            boxShadow: '8px 8px 15px #b3e3e9, -8px -8px 15px #f0fbfc'
          }}>
@@ -21,7 +21,7 @@ export default function CampingCard({ provider }: CampingCardProps) {
         />
       </div>
       
-      <div className="p-4">
+      <div className="p-4 b">
         <div className="flex justify-between items-start mb-2">
           <h2 className="text-xl font-semibold text-gray-800">{provider.name}</h2>
           <div className="flex items-center">
