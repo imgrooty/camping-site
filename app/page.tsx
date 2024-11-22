@@ -1,9 +1,24 @@
-// pages/index.js
 'use client'
 import { useEffect, useState } from 'react';
-import CampingCard from '@/components/campingcards';
 import SearchBar from '@/components/searchbar';
 import Filter from '@/components/filter';
+
+import { useRouter } from 'next/router'; // Corrected import from next/router
+import { image } from 'framer-motion/client';
+
+interface FilterProps {
+  filter: {
+    priceRange: string;
+    type: string;
+  };
+  setFilter: React.Dispatch<React.SetStateAction<{
+    priceRange: string;
+    type: string;
+  }>>;
+}
+
+
+
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
@@ -33,6 +48,7 @@ export default function Home() {
       (filters.type ? provider.type === filters.type : true)
     );
   });
+
 
 
   return (
@@ -87,46 +103,15 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Features Section */}  
-      <div className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl p-8 shadow-lg transform hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <span className="text-3xl">🏕️</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-center">Verified Locations</h3>
-              <p className="text-gray-600 text-center">All camping sites are personally verified for quality and safety, ensuring a worry-free outdoor experience.</p>
-            </div>
-            <div className="bg-white rounded-xl p-8 shadow-lg transform hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <span className="text-3xl">💰</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-center">Best Price Guarantee</h3>
-              <p className="text-gray-600 text-center">Find the best deals and competitive prices for your camping trip with our price match promise.</p>
-            </div>
-            <div className="bg-white rounded-xl p-8 shadow-lg transform hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <span className="text-3xl">⭐</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-center">24/7 Support</h3>
-              <p className="text-gray-600 text-center">Our dedicated customer support team is always available to assist you with any questions or concerns.</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Search Section */}
-      <div className="container mx-auto p-4">
-        <SearchBar query={query} setQuery={setQuery} />
-        <Filter filters={filters} setFilters={setFilters} />
-        <div className="flex flex-wrap gap-4">
-          {filteredProviders.map((provider) => (
-            <CampingCard key={provider.id} provider={provider} />
-          ))}
-        </div>
-      </div>
+  return (
+    <main className=" relative justify-center m-80 ">
+      {/* Search Section */} 
+        <Filter
+          filter={filters}
+          setFilter={setFilters}
+          className="mb-4 m-100"
+        />
     </main>
   );
 }

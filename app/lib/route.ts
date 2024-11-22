@@ -68,6 +68,7 @@ export const authOptions = {
       },
     }),
   ],
+
   pages: {
     signOut: "/", // Redirect to the landing page after signout
   },
