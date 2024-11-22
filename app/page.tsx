@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import SearchBar from '@/components/searchbar';
 import Filter from '@/components/filter';
-
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
@@ -59,21 +58,17 @@ export default function Home() {
                 setFilter={setFilters}
                 className="relative transform z-10 mb-4"
               />
-              <p className="text-black text-lg">
-                Discover and book the best campgrounds, RV parks, cabins,<br />
-                glamping, and more.
-              </p>
             </div>
           </section>
         
 
         {/* Why Campspot Feature Section */}
-        <section className="w-full px-4 py-24 bg-gradient-to-b from-gray-50 to-white">
-          <h2 className="text-4xl font-bold text-center mb-16 gradient-text">
+        <section className="w-full px-1 py-8 bg-gradient-to-b from-gray-50 to-white" style={{backgroundImage: 'url(/images/back.jpg)', backgroundSize: 'cover', backgroundPosition: 'center'}} >
+          <h2 className="text-4xl font-bold text-center mb-16 gradient-text text-white">
             Why SummerCamper?
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 h-[50vh] max-w-7xl mx-auto px-4">
             {/* Camping, Your Way */}
             <div className="neumorphic-card">
               <div className="neumorphic-icon">

@@ -51,15 +51,20 @@ export default function Home() {
   });
 
   return (
-    <main className="min-h-screen bg-grey-500 p-8 md:p-40">
+    <main className="min-h-screen bg-green-500">
+      
+      <section className="w-full h-[75vh] px-4 bg-gradient-to-b from-gray-50 to-white" style={{textAlign: 'center', backgroundImage: 'url(/images/back.jpg)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
       <SearchBar query={query} setQuery={setQuery} />
-      <div className="container mx-auto p-4">
-        <Filter
-          filter={filters}
-          setFilter={setFilters}
-          className="mb-4"
-        />
-        <div className='p-10'>
+            <div className="flex flex-col items-center">
+              <Filter
+                filter={filters}
+                setFilter={setFilters}
+                className="relative transform z-10 mb-4"
+              />
+            </div>
+          </section>
+        
+        <div className='p-10' style={{backgroundImage: 'url(/images/back.jpg)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
           <h1 className="text-2xl font-bold text-gray-100 text-center mb-8">AVAILABLE CAMPS</h1>
           {isLoading && <p className="text-center text-white">Loading...</p>}
           {error && <p className="text-center text-red-500">{error}</p>}
@@ -71,7 +76,6 @@ export default function Home() {
             </div>
           )}
         </div>
-      </div>
     </main>
   );
 }

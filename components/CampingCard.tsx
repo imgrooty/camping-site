@@ -8,8 +8,11 @@ interface CampingCardProps {
 
 export default function CampingCard({ provider }: CampingCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-      <div className="relative h-48 w-full">
+    <div className="bg-green-50 rounded-xl p-2 hover:scale-[1.02] transition-all duration-300"
+         style={{ 
+           boxShadow: '8px 8px 15px #b3e3e9, -8px -8px 15px #f0fbfc'
+         }}>
+      <div className="relative h-48 w-full rounded-lg overflow-hidden">
         <Image
           src={provider.image}
           alt={provider.name}
@@ -38,7 +41,10 @@ export default function CampingCard({ provider }: CampingCardProps) {
           {provider.amenities.slice(0, 3).map((amenity) => (
             <span 
               key={amenity}
-              className="bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded-full"
+              className="bg-cyan-50 text-cyan-700 text-xs px-3 py-1 rounded-full"
+              style={{ 
+                boxShadow: 'inset 3px 3px 7px #b3e3e9, inset -3px -3px 7px #f0fbfc'
+              }}
             >
               {amenity}
             </span>
@@ -46,8 +52,12 @@ export default function CampingCard({ provider }: CampingCardProps) {
         </div>
 
         <div className="flex justify-between items-center">
-          <span className="text-cyan-600 font-semibold">{provider.priceRange}</span>
-          <button className="bg-cyan-500 text-white px-4 py-2 rounded-lg hover:bg-cyan-600 transition-colors">
+          <span className="text-cyan-700 font-semibold">{provider.priceRange}</span>
+          <button 
+            className="bg-cyan-50 text-cyan-700 px-4 py-2 rounded-lg hover:scale-[1.02] transition-all"
+            style={{ 
+              boxShadow: '5px 5px 10px #b3e3e9, -5px -5px 10px #f0fbfc'
+            }}>
             View Details
           </button>
         </div>
