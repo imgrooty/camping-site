@@ -68,7 +68,10 @@ export const authOptions = {
       },
     }),
   ],
-  
+
+  pages: {
+    signOut: "/", // Redirect to the landing page after signout
+  },
   callbacks: {
     async jwt({ token, user }: { token: JWT; user: any }) {
       if (user) {
