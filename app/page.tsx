@@ -4,6 +4,7 @@ import CampingCard from '@/components/campingcards';
 import SearchBar from '@/components/searchbar';
 import Filter from '@/components/filter';
 import { useRouter } from 'next/router'; // Corrected import from next/router
+import { image } from 'framer-motion/client';
 
 interface FilterProps {
   filter: {
@@ -39,26 +40,13 @@ export default function Home() {
   });
 
   return (
-    <main className="bg-cyan-500 justify-center p-40">
-<SearchBar query={query} setQuery={setQuery} />
-      {/* Search Section */}
-      <div className="container p-4">
-        
+    <main className=" relative justify-center m-80 ">
+      {/* Search Section */} 
         <Filter
           filter={filters}
           setFilter={setFilters}
-          className="mb-4"
+          className="mb-4 m-100"
         />
-        {/* search results */}
-        <div className='p-10 items-center justify-center'>
-          <h1 className="text-2xl flex font-bold text-gray-100 text-center">AVAILABLE CAMPS</h1>
-          <div className="flex flex-wrap justify-between mx-auto gap-4 items-center">
-            {filteredProviders.map((provider) => (
-              <CampingCard key={provider.id} provider={provider} />
-            ))}
-          </div>
-        </div>
-      </div>
     </main>
   );
 }

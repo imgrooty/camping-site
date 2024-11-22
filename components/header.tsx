@@ -1,8 +1,14 @@
-// components/Header.js
-
+'use client'
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <header className="bg-[#E8F3D6] shadow-lg border-b border-[#00FF9C]/20">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -18,7 +24,7 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Navigation Bar */}
+        {/* Navigation Bar - Desktop */}
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
             {[
@@ -44,7 +50,6 @@ export default function Header() {
 
         {/* Action Buttons */}
         <div className="flex items-center space-x-4">
-
           {/* Find Camps CTA Button */}
           <Link
             href="/camps"
@@ -57,7 +62,9 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
+            onClick={toggleMobileMenu}
             className="md:hidden text-[#114232] hover:text-[#008550] transition-colors duration-300"
+            aria-label="Toggle mobile menu"
           >
             <svg
               className="w-6 h-6"
@@ -69,12 +76,36 @@ export default function Header() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
+                d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
               />
             </svg>
           </button>
         </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <nav className="md:hidden bg-[#E8F3D6] border-t border-[#00FF9C]/20">
+          <ul className="px-6 py-4 space-y-4">
+            {[
+              { name: 'Home', path: '/' },
+              { name: 'Explore', path: '/explore' },
+              { name: 'About', path: '/about' },
+              { name: 'Contact', path: '/contact' }
+            ].map((item) => (
+              <li key={item.name}>
+                <Link
+                  href={item.path}
+                  className="block text-[#114232] hover:text-[#008550] transition-colors duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }

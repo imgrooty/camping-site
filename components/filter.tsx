@@ -76,7 +76,7 @@ export default function Filter({ filter, setFilter, className }: FilterProps) {
 
   return (
     <form onSubmit={handleSubmit}
-      className="space-y-4 p-6 m-5 bg-[#D6D46D] rounded-lg shadow-lg border border-[#00FF9C]/20 
+      className="space-y-4 p-6 m-5 bg-[#f6f5f5] rounded-lg shadow-lg border border-[#00FF9C]/20 
                      backdrop-blur-sm">
       <div className="flex flex-wrap gap-4">
         <select
