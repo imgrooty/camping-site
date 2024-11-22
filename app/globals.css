@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --background-start: #f3f4f6;
+  --background-end: #ffffff;
+  --shadow-color: #d1d1d1;
+  --highlight-color: #ffffff;
+}
+
+/* Add these custom styles for the neumorphic effect */
+@layer components {
+  .neumorphic-card {
+    @apply rounded-2xl p-8 bg-white 
+      shadow-[8px_8px_16px_#d1d1d1,-8px_-8px_16px_#ffffff] 
+      hover:shadow-[12px_12px_20px_#d1d1d1,-12px_-12px_20px_#ffffff] 
+      transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .neumorphic-icon {
+    @apply mb-6 p-4 rounded-full w-16 h-16 flex items-center justify-center
+      bg-gradient-to-br from-emerald-50 to-white
+      shadow-[inset_4px_4px_8px_#d1d1d1,inset_-4px_-4px_8px_#ffffff];
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500;
+  }
+}
+
+/* Optional: Add smooth scrolling and better font rendering */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional: Add a subtle background gradient to the body */
+body {
+  background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+  min-height: 100vh;
+}

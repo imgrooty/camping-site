@@ -89,9 +89,9 @@ export default function Filter({ filter, setFilter, className }: FilterProps) {
                    hover:shadow-[0_0_15px_rgba(0,255,156,0.15)]"
         >
           <option value="">Price Range</option>
-          <option value="$$">$$</option>
-          <option value="$$$">$$$</option>
-          <option value="$$$$">$$$$</option>
+          <option value="120">120</option>
+          <option value="240">240</option>
+          <option value="360">360</option>
         </select>
 
         <select
