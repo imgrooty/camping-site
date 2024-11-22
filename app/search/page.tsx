@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useState } from 'react';
-import CampingCard from '@/components/campingcards';
 import SearchBar from '@/components/searchbar';
 import Filter from '@/components/filter';
-import { useRouter } from 'next/router'; // Corrected import from next/router
+import CampingCard from '@/components/CampingCard';
+import { CampingProvider } from '@/types/provider';
 
 interface FilterProps {
   filter: {
@@ -17,15 +17,27 @@ interface FilterProps {
 }
 
 export default function Home() {
-  const [providers, setProviders] = useState<any[]>([]);
+  const [providers, setProviders] = useState<CampingProvider[]>([]);
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState({ priceRange: '', type: '' });
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProviders = async () => {
-      const res = await fetch('/api/camping-providers');
-      const data = await res.json();
-      setProviders(data);
+      try {
+        setIsLoading(true);
+        const res = await fetch('/api/camping-providers');
+        if (!res.ok) {
+          throw new Error('Failed to fetch providers');
+        }
+        const data = await res.json();
+        setProviders(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch providers');
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchProviders();
   }, []);
@@ -39,24 +51,25 @@ export default function Home() {
   });
 
   return (
-    <main className="bg-cyan-500 justify-center p-40">
-<SearchBar query={query} setQuery={setQuery} />
-      {/* Search Section */}
-      <div className="container p-4">
-        
+    <main className="min-h-screen bg-grey-500 p-8 md:p-40">
+      <SearchBar query={query} setQuery={setQuery} />
+      <div className="container mx-auto p-4">
         <Filter
           filter={filters}
           setFilter={setFilters}
           className="mb-4"
         />
-        {/* search results */}
-        <div className='p-10 items-center justify-center'>
-          <h1 className="text-2xl flex font-bold text-gray-100 text-center">AVAILABLE CAMPS</h1>
-          <div className="flex flex-wrap justify-between mx-auto gap-4 items-center">
-            {filteredProviders.map((provider) => (
-              <CampingCard key={provider.id} provider={provider} />
-            ))}
-          </div>
+        <div className='p-10'>
+          <h1 className="text-2xl font-bold text-gray-100 text-center mb-8">AVAILABLE CAMPS</h1>
+          {isLoading && <p className="text-center text-white">Loading...</p>}
+          {error && <p className="text-center text-red-500">{error}</p>}
+          {!isLoading && !error && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProviders.map((provider) => (
+                <CampingCard key={provider.id} provider={provider} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </main>

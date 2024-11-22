@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from 'react';
-import CampingCard from '@/components/campingcards';
 import SearchBar from '@/components/searchbar';
 import Filter from '@/components/filter';
 import { useRouter } from 'next/router'; // Corrected import from next/router
