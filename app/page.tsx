@@ -16,10 +16,18 @@ interface FilterProps {
   }>>;
 }
 
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
+
 export default function Home() {
+  const session = useSession()
   const [providers, setProviders] = useState<any[]>([]);
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState({ priceRange: '', type: '' });
+
+  if(session){
+    redirect("/dashboard")
+  }
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -37,6 +45,7 @@ export default function Home() {
       (filters.type ? provider.type === filters.type : true)
     );
   });
+
 
   return (
     <main className=" relative justify-center m-80 ">

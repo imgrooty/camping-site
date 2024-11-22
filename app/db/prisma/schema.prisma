@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lister {
+  id       Int       @id @default(autoincrement())
+  fullName String
+  email    String    @unique
+  password String
+  Listing  Listing[]
+}
+
+model Listing {
+  id         Int       @id @default(autoincrement())
+  campName   String
+  location   String
+  type       CampTypes
+  PriceRange Float
+  images     String[]
+  listerId   Int
+  lister     Lister    @relation(fields: [listerId], references: [id])
+  Review     Review[]
+}
+
+enum CampTypes {
+  Sports
+  Adventure
+  Stem
+  Art
+  Nature
+  Academic
+  Oldage
+  Sleepaway
+}
+
+model Review {
+  id        Int     @id @default(autoincrement())
+  rating    Int     @default(0) // 0 to 5 scale
+  comment   String
+  listingId Int
+  Listing   Listing @relation(fields: [listingId], references: [id])
+}
